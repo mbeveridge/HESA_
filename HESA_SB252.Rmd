@@ -39,7 +39,9 @@ df  # (134880 rows x 8 cols)
 
 
 ```{r}
-df <- df %>% filter()
+df <- df %>% filter(`Subject Area` != c("Total", "Total - Non-science subject areas", "Total - Science subject areas") & `First year marker` != "All" & `Level of study` != c("All", "All postgraduate", "All undergraduate") & `Mode of study` != "All" & `Country of HE provider` != "All" & Sex != "Total")
+
+df  # (22017 rows x 8 cols)
 ```
 
 
