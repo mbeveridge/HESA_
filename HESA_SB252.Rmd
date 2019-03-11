@@ -24,5 +24,27 @@ This bulletin covers higher education (HE) providers who submit a full Student r
 
 ```{r}
 df <- read_csv("data/SB252_Student_UK_2017-18/figure-14.csv", skip = 17, col_names = TRUE)   # exclude explanation rows
-df
+df  # (134880 rows x 8 cols)
 ```
+
+
+* `Subject Area` <chr> : (1-9, A-H, 3 totals)
+* `First year marker` <chr> : 'First year'/'Other years'/All
+* `Level of study` <chr> : (4 types, 2 sub-totals, total)
+* `Mode of study` <chr> : Full-time/Part-time/All
+* `Country of HE provider` <chr> : England/'Northern Ireland'/Scotland/Wales/All
+* `Sex` <chr> : Female/Male/Other/Total
+* `Academic Year` <chr> : eg. 2013/14
+* `Number` <int> : quantity of students
+
+
+```{r}
+df <- df %>% filter()
+```
+
+
+
+
+
+
+
