@@ -1,0 +1,28 @@
+---
+title: "HESA - SB252 (Student Statistics UK 2017/18)"
+output:
+  html_document:
+    df_print: paged
+  github_document: default
+  html_notebook: default
+---
+
+```{r setup}
+library(tidyverse)
+library(ggvis)
+```
+
+# HESA - SB252 (Student Statistics UK 2017/18)
+## Data import
+
+Data downloaded from https://www.hesa.ac.uk/news/17-01-2019/sb252-higher-education-student-statistics
+
+"This Statistical Bulletin is the annual first release of HESA student data. In previous years, our statistical bulletins were known as statistical first releases. We have changed the name to align with terminology used by other official statistics producers.
+
+This bulletin covers higher education (HE) providers who submit a full Student record data return to HESA. This includes publicly funded Higher Education Institutions, the privately funded University of Buckingham, and HE level provision at Further Education (FE) Colleges in Wales (accounting for 1,670 students in 2017/18)."
+
+
+```{r}
+df <- read_csv("data/SB252_Student_UK_2017-18/figure-14.csv", skip = 17, col_names = TRUE)   # exclude explanation rows
+df
+```
