@@ -23,12 +23,14 @@ This bulletin covers higher education (HE) providers who submit a full Student r
 
 
 ```{r}
-df <- read_csv("data/SB252_Student_UK_2017-18/figure-14.csv", skip = 17, col_names = TRUE)   # exclude explanation rows
+# import data, but exclude initial explanation rows
+
+df <- read_csv("data/SB252_Student_UK_2017-18/figure-14.csv", skip = 17, col_names = TRUE)
 df  # (134880 rows x 8 cols)
 ```
 
 
-* `Subject Area` <chr> : (1-9, A-H, 3 totals)
+* `Subject Area` <chr> : (1-9, A-J, 3 totals)
 * `First year marker` <chr> : 'First year'/'Other years'/All
 * `Level of study` <chr> : (4 types, 2 sub-totals, total)
 * `Mode of study` <chr> : Full-time/Part-time/All
@@ -38,13 +40,32 @@ df  # (134880 rows x 8 cols)
 * `Number` <int> : quantity of students
 
 
-```{r}
-df <- df %>% filter(`Subject Area` != c("Total", "Total - Non-science subject areas", "Total - Science subject areas") & `First year marker` != "All" & `Level of study` != c("All", "All postgraduate", "All undergraduate") & `Mode of study` != "All" & `Country of HE provider` != "All" & Sex != "Total")
+## Data cleaning : rows
 
-df  # (22017 rows x 8 cols)
+```{r}
+# filter out rows that are totals. Note the use of `!` with `%in%` for lists
+
+df <- df %>% filter(!`Subject Area` %in% c("Total", "Total - Non-science subject areas", "Total - Science subject areas")) %>% filter(`First year marker` != "All") %>% filter(!`Level of study` %in% c("All", "All postgraduate", "All undergraduate")) %>% filter(`Mode of study` != "All") %>% filter(`Country of HE provider` != "All") %>% filter(Sex != "Total")
+
+df  # (17220 rows x 8 cols)
 ```
 
 
+## Basic EDA
+
+```{r}
+# check that total still matches
+
+df %>% count(Number)
+df %>% nrow()
+
+df %>% summarize(sum(Number))   # 11506415 ...total of all 5 years
+
+df %>% group_by(`Academic Year`) %>% summarize(sum(Number))  # all a couple of '00 low ?
+df %>% group_by(`Academic Year`, Sex) %>% summarize(sum(Number))
+df %>% group_by(`Academic Year`, `Subject Area`) %>% summarize(sum(Number))  # all +/- 5-30
+df %>% group_by(`Academic Year`, `Subject Area`, Sex) %>% summarize(sum(Number))
+```
 
 
 
