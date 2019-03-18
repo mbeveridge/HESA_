@@ -56,17 +56,23 @@ df  # (17220 rows x 8 cols)
 ```{r}
 # check that total still matches
 
-df %>% count(Number)
-df %>% nrow()
+df %>% count(Number)            # 1166 rows. `Number` is a multiple of 5. An odd rounding?
+df %>% nrow()                   # 17220 rows
 
 df %>% summarize(sum(Number))   # 11506415 ...total of all 5 years
 
-df %>% group_by(`Academic Year`) %>% summarize(sum(Number))  # all a couple of '00 low ?
-df %>% group_by(`Academic Year`, Sex) %>% summarize(sum(Number))
-df %>% group_by(`Academic Year`, `Subject Area`) %>% summarize(sum(Number))  # all +/- 5-30
-df %>% group_by(`Academic Year`, `Subject Area`, Sex) %>% summarize(sum(Number))
+df %>% group_by(`Academic Year`) %>% summarize(sum(Number))  # all a couple of '00 low ? (v's table on website)
+df %>% group_by(`Academic Year`, Sex) %>% summarize(sum(Number)) # 15 rows
+df %>% group_by(`Academic Year`, `Subject Area`) %>% summarize(sum(Number))  # 95 rows. all +/- 5-30. (v's table on website)
+df %>% group_by(`Academic Year`, `Subject Area`, Sex) %>% summarize(sum(Number)). # 285 rows
 ```
 
+Totals don't quite match those in table on website. And maybe that could be investigated further in the future, but close enough to do a (comparable) EDA/viz/etc
+
+
+```{r}
+
+```
 
 
 
