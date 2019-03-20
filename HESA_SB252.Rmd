@@ -76,14 +76,30 @@ df %>%
   ggplot(aes(x=`Academic Year`, y=Number, colour=`Level of study`)) +
   geom_line()
 
+#1b
+df <- df %>%
+  mutate(Year = as.numeric(substring(`Academic Year`, 1, 4)) + 1)
+
+df
+
 #2
-#df %>%
-#  ggplot(aes(x=`Academic Year`, y=Number, colour=`Level of study`)) +
-#  geom_bar()
+df %>%
+  ggplot(aes(x=Year, y=Number)) +
+  geom_point(stat="sum")
+
+#3
+df %>%
+  ggplot(aes(x=Year, y=Number)) +
+  geom_line(stat="sum")
+
+#4
+df %>%
+  ggplot(aes(x=Year, y=Number)) +
+  geom_bar(stat = "identity")
 
 
 ```
 
 
-`geom_line()` is giving a stacked bar. Need to change the year into numerical (instead of categorical) variable?
+Charts #2 & #3 are not what I expected or want. Still thinking about them
 
