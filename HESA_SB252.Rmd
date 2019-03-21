@@ -94,12 +94,12 @@ df %>%
 
 #5 ???
 df %>%
-  ggplot(aes(x=Year, y=Number, group=`Country of HE provider`)) +
+  ggplot(aes(x=Year, y=Number, group=`Subject Area`)) +
   geom_line()
 
 #6. Right shape now (no sawtooth, unlike #5), but how do I get the aggregated lines that I want?
 df %>%
-  ggplot(aes(x=Year, y=Number, group=interaction(`First year marker`, `Level of study`, `Mode of study`, `Country of HE provider`, `Subject Area`, Sex))) +
+  ggplot(aes(x=Year, y=Number, group=interaction(`Subject Area`, `First year marker`, `Level of study`, `Mode of study`, `Country of HE provider`, Sex))) +
   geom_line()
 
 #7
