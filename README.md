@@ -8,4 +8,4 @@ Data downloaded from [https://www.hesa.ac.uk/news/17-01-2019/sb252-higher-educat
 
 
 ## EDA status
-Overcame problem of `geom_line` sawtooth shape (a symptom of `group` being wrong), by using `group=interaction()`. Now have many many 'correct' lines, but how do I get few/aggregate lines?
+Overcame problem of `geom_line` sawtooth shape (a symptom of `group` being wrong), by using `group=interaction()`. Now have many many 'correct' lines, but how do I get few/aggregate lines in the chart, instead?
